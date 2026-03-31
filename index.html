@@ -3,176 +3,1333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trịnh Gia Bảo | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Trịnh Gia Bảo | Flutter & AI Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* =========================================
+           ROOT & RESET
+        ========================================= */
+        :root {
+            --bg: #0C100E;
+            --bg2: #111713;
+            --bg3: #161C18;
+            --card: rgba(255,255,255,0.04);
+            --card-border: rgba(255,255,255,0.08);
+            --primary: #5BDF8A;
+            --primary-dim: rgba(91,223,138,0.15);
+            --primary-glow: rgba(91,223,138,0.35);
+            --accent: #A8EDBE;
+            --gold: #D4A853;
+            --text: #E8EDE9;
+            --text-muted: #7A8C7E;
+            --text-dim: #4A5A4D;
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--primary); color: var(--bg); }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            width: min(92%, 1140px);
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           NOISE OVERLAY
+        ========================================= */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        /* =========================================
+           CANVAS PARTICLES
+        ========================================= */
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* =========================================
+           HEADER / NAV
+        ========================================= */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all var(--transition);
+        }
+        header.scrolled {
+            background: rgba(12,16,14,0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 14px 0;
+        }
+
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text);
+            position: relative;
+        }
+        .logo span { color: var(--primary); }
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: width var(--transition);
+        }
+        .logo:hover::after { width: 100%; }
+
+        nav ul {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            letter-spacing: 0.3px;
+        }
+        nav a:hover { color: var(--text); background: var(--card); }
+
+        .nav-cta {
+            background: var(--primary) !important;
+            color: var(--bg) !important;
+            font-weight: 600 !important;
+        }
+        .nav-cta:hover {
+            background: var(--accent) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            border: none;
+            background: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* =========================================
+           HERO
+        ========================================= */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+
+        /* Background glow */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(91,223,138,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(91,223,138,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-dim);
+            border: 1px solid rgba(91,223,138,0.2);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            margin-bottom: 28px;
+        }
+        .hero-eyebrow::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.8); }
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -2px;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .hero-role {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            border: none;
+            letter-spacing: 0.2px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--bg);
+        }
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--primary-glow);
+        }
+        .btn-ghost {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--card-border);
+        }
+        .btn-ghost:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Hero stats */
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 52px;
+            padding-top: 36px;
+            border-top: 1px solid var(--card-border);
+        }
+        .stat-item { }
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Hero image */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-blob-wrap {
+            position: relative;
+            width: 360px;
+            height: 420px;
+        }
+
+        .blob-bg {
+            position: absolute;
+            inset: -20px;
+            background: var(--primary-dim);
+            border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%;
+            animation: blobmorph 8s ease-in-out infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes blobmorph {
+            0%, 100% { border-radius: 60% 40% 50% 70% / 50% 60% 40% 60%; }
+            25% { border-radius: 50% 70% 40% 60% / 60% 40% 70% 50%; }
+            50% { border-radius: 40% 60% 70% 50% / 70% 50% 60% 40%; }
+            75% { border-radius: 70% 50% 60% 40% / 40% 70% 50% 60%; }
+        }
+
+        .image-container {
+            position: absolute;
+            inset: 10px;
+            border-radius: 55% 45% 48% 52% / 52% 48% 52% 48%;
+            overflow: hidden;
+            border: 2px solid rgba(91,223,138,0.2);
+            animation: blobmorph 8s ease-in-out infinite;
+        }
+        .image-container img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        /* Floating cards on hero */
+        .float-card {
+            position: absolute;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 12px 18px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            animation: float-y 4s ease-in-out infinite;
+        }
+        .float-card.card1 {
+            top: 20px; right: -20px;
+            animation-delay: 0s;
+            color: var(--primary);
+        }
+        .float-card.card2 {
+            bottom: 60px; left: -30px;
+            animation-delay: 2s;
+            color: var(--accent);
+        }
+        @keyframes float-y {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* =========================================
+           SECTIONS
+        ========================================= */
+        section { padding: 100px 0; position: relative; z-index: 1; }
+        .alt-bg { background: var(--bg2); }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .section-label::before {
+            content: '';
+            width: 30px; height: 1px;
+            background: var(--primary);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            line-height: 1.8;
+        }
+
+        /* =========================================
+           ABOUT
+        ========================================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .about-text p strong { color: var(--text); font-weight: 600; }
+        .about-text p em { color: var(--primary); font-style: normal; }
+
+        .about-right { display: flex; flex-direction: column; gap: 24px; }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: border-color var(--transition), transform var(--transition);
+        }
+        .info-card:hover {
+            border-color: rgba(91,223,138,0.3);
+            transform: translateY(-3px);
+        }
+
+        .info-card-title {
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 18px;
+        }
+
+        .contact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .contact-list i {
+            width: 34px; height: 34px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .contact-list a:hover { color: var(--primary); }
+
+        .interests-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .interest-tag {
+            background: var(--primary-dim);
+            border: 1px solid rgba(91,223,138,0.15);
+            color: var(--primary);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* =========================================
+           SKILLS
+        ========================================= */
+        .skills-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-block {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .skill-block:hover { border-color: rgba(91,223,138,0.25); transform: translateY(-6px); }
+        .skill-block:hover::before { opacity: 1; }
+
+        .skill-icon {
+            width: 52px; height: 52px;
+            background: var(--primary-dim);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .skill-block h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .skill-block p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 16px;
+        }
+        .skill-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        /* =========================================
+           PROJECTS
+        ========================================= */
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+            group: true;
+        }
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary-dim) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+        }
+        .project-card:hover {
+            border-color: rgba(91,223,138,0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+        .project-card:hover::after { opacity: 1; }
+
+        /* Featured card */
+        .project-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: start;
+            gap: 40px;
+        }
+
+        .project-number {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        .project-card.featured .project-title { font-size: 2rem; }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .project-tag {
+            background: var(--primary-dim);
+            border: 1px solid rgba(91,223,138,0.15);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: gap var(--transition);
+        }
+        .project-link:hover { gap: 14px; }
+        .project-link i { font-size: 0.8rem; }
+
+        .project-side-action {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .icon-link {
+            width: 52px; height: 52px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: all 0.25s ease;
+        }
+        .icon-link:hover {
+            background: var(--primary-dim);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.08);
+        }
+
+        /* =========================================
+           CONTACT / FOOTER
+        ========================================= */
+        #contact {
+            background: var(--bg);
+        }
+
+        .contact-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-inner .section-label { justify-content: center; }
+
+        .contact-inner .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+        }
+
+        .contact-inner .section-desc {
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+        }
+        .social-pill:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-dim);
+            transform: translateY(-2px);
+        }
+        .social-pill i { font-size: 1rem; }
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            background: var(--bg);
+        }
+        footer p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        footer span { color: var(--primary); }
+
+        /* =========================================
+           SCROLL REVEAL
+        ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+        @media (max-width: 1024px) {
+            .hero-layout { grid-template-columns: 1fr; gap: 60px; }
+            .hero-visual { order: -1; }
+            .image-blob-wrap { width: 280px; height: 320px; margin: 0 auto; }
+            .hero-desc { max-width: 100%; }
+            .hero-stats { gap: 24px; }
+            .about-grid { grid-template-columns: 1fr; gap: 50px; }
+            .skills-layout { grid-template-columns: 1fr; }
+            .project-card.featured { grid-template-columns: 1fr; }
+            .project-side-action { flex-direction: row; align-items: center; }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            nav ul.open { 
+                display: flex; flex-direction: column;
+                position: fixed; inset: 0;
+                background: rgba(12,16,14,0.97);
+                backdrop-filter: blur(20px);
+                justify-content: center; align-items: center;
+                gap: 20px;
+                z-index: 999;
+            }
+            nav ul.open a { font-size: 1.4rem; font-family: var(--font-display); }
+            .hamburger { display: flex; z-index: 1001; }
+            .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.open span:nth-child(2) { opacity: 0; }
+            .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+            #hero { padding: 100px 0 60px; text-align: center; }
+            .hero-ctas { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .float-card { display: none; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-card.featured { grid-column: 1; }
+            section { padding: 70px 0; }
+            .about-grid { gap: 36px; }
+            .contact-inner .section-title { font-size: 2.2rem; }
+            .hero-name { letter-spacing: -1px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+            .skills-layout { grid-template-columns: 1fr; }
+            .btn { padding: 11px 22px; font-size: 0.9rem; }
+        }
+
+        /* =========================================
+           SCROLLBAR
+        ========================================= */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-dim); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">TGB.</a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#about">Về tôi</a></li>
-                    <li><a href="#skills">Kỹ năng</a></li>
-                    <li><a href="#projects">Dự án</a></li>
-                    <li><a href="#contact" class="contact-btn">Liên hệ</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<canvas id="particles-canvas"></canvas>
 
-    <main>
-        <!-- Phân vùng Hero: Layout 2 cột hiện đại -->
-        <section id="hero">
-            <div class="container hero-wrapper">
-                <div class="hero-content reveal">
-                    <span class="badge">Xin chào, tôi là</span>
-                    <h1 class="hero-title">Trịnh Gia Bảo</h1>
-                    <h2 class="hero-subtitle">Full-Stack Developer Intern</h2>
-                    <p class="hero-desc">Tập trung vào Mobile (Flutter) & tích hợp AI (GenAI, On-device AI). Đam mê xây dựng các giải pháp thực tế, mượt mà và tối ưu hiệu suất.</p>
-                    <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">Xem Dự Án</a>
-                        <a href="https://github.com/gbao86" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+<!-- ========== HEADER ========== -->
+<header id="header">
+    <div class="container nav-wrap">
+        <a href="#" class="logo">TGB<span>.</span></a>
+        <nav>
+            <ul id="nav-menu">
+                <li><a href="#about">Về tôi</a></li>
+                <li><a href="#skills">Kỹ năng</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact" class="nav-cta">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-layout">
+            <!-- Text side -->
+            <div class="hero-content reveal">
+                <div class="hero-eyebrow">Xin chào, tôi là</div>
+                <h1 class="hero-name">Trịnh<br>Gia Bảo</h1>
+                <h2 class="hero-role">Flutter & AI Developer Intern</h2>
+                <p class="hero-desc">
+                    Sinh viên CNTT tại HCMUNRE — tập trung vào phát triển
+                    <strong style="color:var(--text)">Mobile (Flutter)</strong> &
+                    <strong style="color:var(--text)">On-device AI</strong>.
+                    Đam mê xây dựng giải pháp thực tế, mượt mà và hiệu suất cao để giải quyết các bài toán môi trường.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-folder-open"></i> Xem Dự Án
+                    </a>
+                    <a href="https://github.com/gbao86" target="_blank" class="btn btn-ghost">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-num">4+</div>
+                        <div class="stat-label">Dự án</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">5</div>
+                        <div class="stat-label">Ngôn ngữ</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">2026</div>
+                        <div class="stat-label">Sẵn sàng thực tập</div>
                     </div>
                 </div>
-                <div class="hero-image reveal">
-                    <div class="image-frame">
+            </div>
+            <!-- Image side -->
+            <div class="hero-visual reveal reveal-delay-2">
+                <div class="image-blob-wrap">
+                    <div class="blob-bg"></div>
+                    <div class="image-container">
                         <img src="image_1.png" alt="Trịnh Gia Bảo">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Phân vùng Về Tôi -->
-        <section id="about" class="section-bg">
-             <div class="container reveal">
-                <div class="section-header">
-                    <h2>Về Tôi</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>Hiện là sinh viên chuyên ngành <strong>Công nghệ thông tin (Tin học Môi trường)</strong> tại Đại học Tài nguyên và Môi trường TP.HCM. Định hướng của tôi là mang sức mạnh của Trí tuệ nhân tạo nhúng vào các thiết bị di động để giải quyết các bài toán môi trường và đời sống.</p>
-                        <p>Bên ngoài những dòng code, tôi tìm thấy nguồn cảm hứng từ thế giới tự nhiên và có tình yêu đặc biệt với các loài động vật (đặc biệt là chó, mèo và rắn).</p>
+                    <div class="float-card card1">
+                        <i class="fas fa-mobile-alt" style="margin-right:6px;"></i> Flutter Dev
                     </div>
-                    <div class="about-info-card">
-                        <ul>
-                            <li><i class="fas fa-map-marker-alt"></i> <strong>Vị trí:</strong> Phường Tân Hòa, TP. HCM</li>
-                            <li><i class="fas fa-envelope"></i> <strong>Email:</strong> gbao74452@gmail.com</li>
-                            <li><i class="fas fa-phone"></i> <strong>Điện thoại:</strong> (+84) 868 092 445</li>
-                        </ul>
-                    </div>
-                </div>
-             </div>
-        </section>
-
-        <!-- Phân vùng Kỹ Năng -->
-        <section id="skills">
-            <div class="container reveal">
-                <div class="section-header">
-                    <h2>Kỹ Năng Chuyên Môn</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-mobile-alt"></i></div>
-                        <h3>Mobile & Web</h3>
-                        <p>Flutter (Provider, GetX, BLOC), RESTful API, Streamlit, Firebase.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-brain"></i></div>
-                        <h3>AI & Data</h3>
-                        <p>TensorFlow Lite, Gemini 1.5 Flash API, Scikit-learn, Web Scraping.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-code"></i></div>
-                        <h3>Ngôn Ngữ</h3>
-                        <p>Dart, Python, Java, SQL, JavaScript.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="icon-box"><i class="fas fa-tools"></i></div>
-                        <h3>Công Cụ</h3>
-                        <p>Git/GitHub, Docker, Postman, Figma.</p>
+                    <div class="float-card card2">
+                        <i class="fas fa-brain" style="margin-right:6px;"></i> AI Integration
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- Phân vùng Dự án -->
-        <section id="projects" class="section-bg">
-            <div class="container reveal">
-                <div class="section-header">
-                    <h2>Dự Án Nổi Bật</h2>
-                    <div class="line"></div>
+<!-- ========== ABOUT ========== -->
+<section id="about" class="alt-bg">
+    <div class="container">
+        <div class="about-grid">
+            <div class="reveal">
+                <div class="section-label">Giới thiệu</div>
+                <h2 class="section-title">Đôi nét<br>về tôi</h2>
+                <div class="about-text" style="margin-top: 28px;">
+                    <p>
+                        Tôi đang theo học chuyên ngành <em>Công nghệ thông tin (Tin học Môi trường)</em> tại
+                        <strong>Đại học Tài nguyên và Môi trường TP.HCM (HCMUNRE)</strong>.
+                    </p>
+                    <p>
+                        Định hướng của tôi là mang sức mạnh của <strong>Trí tuệ nhân tạo</strong> — đặc biệt là AI
+                        nhúng trực tiếp trên thiết bị (On-device AI) — vào các ứng dụng di động để giải quyết
+                        các bài toán thực tiễn về môi trường và đời sống hàng ngày.
+                    </p>
+                    <p>
+                        Bên ngoài code, tôi tìm thấy nguồn cảm hứng từ <strong>thế giới tự nhiên</strong> và
+                        có tình yêu đặc biệt với các loài động vật — chó, mèo và cả rắn 🐍.
+                    </p>
                 </div>
-                <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>Book Search & Management</h3>
-                            <div class="tags">
-                                <span>Flutter</span> <span>Python</span> <span>Firebase</span>
-                            </div>
-                            <p>Công cụ tìm kiếm Hybrid tích hợp Google Books API và Web Scraper, xử lý bất đồng bộ mạnh mẽ cho trải nghiệm mượt mà.</p>
-                            <a href="https://github.com/gbao86/tim_kiem_sach.git" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>AI Garbage Classification</h3>
-                            <div class="tags">
-                                <span>TensorFlow Lite</span> <span>Gemini API</span> <span>Flutter</span>
-                            </div>
-                            <p>Ứng dụng di động phân loại rác thải thời gian thực (độ trễ < 200ms) kết hợp GenAI hướng dẫn xử lý thân thiện với môi trường.</p>
-                            <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>Music Genre Classifier</h3>
-                            <div class="tags">
-                                <span>Keras/CNN</span> <span>Flask</span> <span>Librosa</span>
-                            </div>
-                            <p>Mô hình Deep Learning 2 giai đoạn phân loại 8 thể loại âm nhạc với độ chính xác 80%, giao tiếp qua RESTful API.</p>
-                            <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- Project 4 -->
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h3>UrbanEcoTool Vietnam</h3>
-                            <div class="tags">
-                                <span>GeoPandas</span> <span>Python</span>
-                            </div>
-                            <p>Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, giảm 50% thời gian lập kế hoạch thủ công.</p>
-                            <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
-                        </div>
+            </div>
+            <div class="about-right">
+                <div class="info-card reveal reveal-delay-1">
+                    <div class="info-card-title">Liên hệ</div>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Phường Tân Hòa, TP. Hồ Chí Minh</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:gbao74452@gmail.com">gbao74452@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:tiktokthu10@gmail.com">tiktokthu10@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+84868092445">(+84) 868 092 445</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/gbao86" target="_blank">github.com/gbao86</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="info-card reveal reveal-delay-2">
+                    <div class="info-card-title">Sở thích & Quan tâm</div>
+                    <div class="interests-row">
+                        <span class="interest-tag">🌿 Môi trường</span>
+                        <span class="interest-tag">🤖 On-device AI</span>
+                        <span class="interest-tag">📱 Mobile UX</span>
+                        <span class="interest-tag">🐍 Động vật</span>
+                        <span class="interest-tag">🌳 Tự nhiên</span>
+                        <span class="interest-tag">🎵 Âm nhạc</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <!-- Footer / Liên hệ -->
-        <footer id="contact">
-            <div class="container reveal">
-                <h2>Sẵn sàng kiến tạo những dự án mới?</h2>
-                <p>Tôi luôn cởi mở với các cơ hội thực tập và hợp tác phát triển.</p>
-                <a href="mailto:gbao74452@gmail.com" class="btn btn-primary" style="margin-top: 20px;">Gửi Email Cho Tôi</a>
-                <div class="social-links">
-                    <a href="https://github.com/gbao86" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-                <div class="copyright">
-                    <p>&copy; 2026 Trịnh Gia Bảo. Lấy cảm hứng từ sự cân bằng của tự nhiên.</p>
+<!-- ========== SKILLS ========== -->
+<section id="skills">
+    <div class="container">
+        <div style="text-align:center; margin-bottom:56px;" class="reveal">
+            <div class="section-label" style="justify-content:center;">Chuyên môn</div>
+            <h2 class="section-title">Kỹ năng & Công nghệ</h2>
+            <p class="section-desc" style="margin: 0 auto;">Các công nghệ và công cụ tôi sử dụng để xây dựng sản phẩm từ ý tưởng đến thực tế.</p>
+        </div>
+        <div class="skills-layout">
+            <div class="skill-block reveal reveal-delay-1">
+                <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile & Web</h3>
+                <p>Phát triển ứng dụng đa nền tảng hiệu năng cao với Flutter, quản lý state chuyên sâu và tích hợp RESTful API mượt mà.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Flutter</span>
+                    <span class="skill-tag">Provider</span>
+                    <span class="skill-tag">GetX</span>
+                    <span class="skill-tag">BLOC</span>
+                    <span class="skill-tag">Firebase</span>
+                    <span class="skill-tag">Streamlit</span>
+                    <span class="skill-tag">RESTful API</span>
                 </div>
             </div>
-        </footer>
-    </main>
+            <div class="skill-block reveal reveal-delay-2">
+                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI & Machine Learning</h3>
+                <p>Triển khai mô hình AI trực tiếp trên thiết bị, tích hợp GenAI API và xây dựng pipeline xử lý dữ liệu thông minh.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow Lite</span>
+                    <span class="skill-tag">Gemini API</span>
+                    <span class="skill-tag">Keras/CNN</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Librosa</span>
+                    <span class="skill-tag">Web Scraping</span>
+                </div>
+            </div>
+            <div class="skill-block reveal reveal-delay-3">
+                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                <h3>Ngôn ngữ lập trình</h3>
+                <p>Thành thạo đa ngôn ngữ, từ mobile đến backend, từ scripting đến data science, linh hoạt chọn đúng công cụ cho từng bài toán.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Dart</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="skill-block reveal reveal-delay-4">
+                <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                <h3>Công cụ & DevOps</h3>
+                <p>Quy trình phát triển chuyên nghiệp với version control, containerization, API testing và thiết kế giao diện chuẩn mực.</p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">GeoPandas</span>
+                    <span class="skill-tag">Flask</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- ========== PROJECTS ========== -->
+<section id="projects" class="alt-bg">
+    <div class="container">
+        <div class="projects-header reveal">
+            <div>
+                <div class="section-label">Portfolio</div>
+                <h2 class="section-title">Dự án nổi bật</h2>
+            </div>
+            <a href="https://github.com/gbao86" target="_blank" class="btn btn-ghost">
+                <i class="fab fa-github"></i> Xem tất cả
+            </a>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- Featured: AI Garbage -->
+            <div class="project-card featured reveal">
+                <div>
+                    <div class="project-number">Dự án 01 · Nổi bật</div>
+                    <h3 class="project-title">AI Garbage Classification</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">TensorFlow Lite</span>
+                        <span class="project-tag">Gemini 1.5 Flash</span>
+                        <span class="project-tag">Flutter</span>
+                        <span class="project-tag">On-device AI</span>
+                    </div>
+                    <p class="project-desc">
+                        Ứng dụng di động phân loại rác thải <strong style="color:var(--text)">thời gian thực với độ trễ dưới 200ms</strong>,
+                        sử dụng TensorFlow Lite chạy hoàn toàn trên thiết bị. Kết hợp Gemini GenAI hướng dẫn xử lý
+                        từng loại rác một cách thân thiện với môi trường và dễ hiểu cho người dùng.
+                    </p>
+                    <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="project-side-action">
+                    <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="icon-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Book Search -->
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-number">Dự án 02</div>
+                <h3 class="project-title">Book Search & Management</h3>
+                <div class="project-tags">
+                    <span class="project-tag">Flutter</span>
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Firebase</span>
+                </div>
+                <p class="project-desc">
+                    Công cụ tìm kiếm Hybrid tích hợp Google Books API và Web Scraper tùy chỉnh, xử lý bất đồng bộ mạnh mẽ đem đến trải nghiệm tìm kiếm mượt mà.
+                </p>
+                <a href="https://github.com/gbao86/tim_kiem_sach.git" target="_blank" class="project-link">
+                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Music Genre -->
+            <div class="project-card reveal reveal-delay-2">
+                <div class="project-number">Dự án 03</div>
+                <h3 class="project-title">Music Genre Classifier</h3>
+                <div class="project-tags">
+                    <span class="project-tag">Keras/CNN</span>
+                    <span class="project-tag">Flask</span>
+                    <span class="project-tag">Librosa</span>
+                </div>
+                <p class="project-desc">
+                    Mô hình Deep Learning 2 giai đoạn phân loại <strong style="color:var(--text)">8 thể loại âm nhạc với độ chính xác 80%</strong>, triển khai qua RESTful API với Flask.
+                </p>
+                <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">
+                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- UrbanEcoTool -->
+            <div class="project-card reveal reveal-delay-3" style="grid-column: 1 / -1;">
+                <div class="project-number">Dự án 04</div>
+                <h3 class="project-title" style="font-size: 1.6rem;">UrbanEcoTool Vietnam</h3>
+                <div class="project-tags">
+                    <span class="project-tag">GeoPandas</span>
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">GIS</span>
+                    <span class="project-tag">TCVN Standards</span>
+                </div>
+                <p class="project-desc" style="max-width: 600px;">
+                    Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, phân tích dữ liệu không gian địa lý và
+                    <strong style="color:var(--text)">giảm 50% thời gian lập kế hoạch thủ công</strong> so với phương pháp truyền thống.
+                </p>
+                <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">
+                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact">
+    <div class="container">
+        <div class="contact-inner reveal">
+            <div class="section-label">Liên hệ</div>
+            <h2 class="section-title">Sẵn sàng hợp tác?</h2>
+            <p class="section-desc">
+                Tôi luôn cởi mở với các cơ hội thực tập, hợp tác dự án hoặc chỉ đơn giản là một cuộc trò chuyện về công nghệ và môi trường.
+            </p>
+            <div class="contact-buttons">
+                <a href="mailto:gbao74452@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Gửi Email
+                </a>
+                <a href="mailto:tiktokthu10@gmail.com" class="btn btn-ghost">
+                    <i class="fas fa-envelope"></i> Email phụ
+                </a>
+            </div>
+            <div class="social-row">
+                <a href="https://github.com/gbao86" target="_blank" class="social-pill">
+                    <i class="fab fa-github"></i> github.com/gbao86
+                </a>
+                <a href="tel:+84868092445" class="social-pill">
+                    <i class="fas fa-phone"></i> (+84) 868 092 445
+                </a>
+                <a href="https://maps.google.com/?q=Tan+Hoa+Ho+Chi+Minh" target="_blank" class="social-pill">
+                    <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="container">
+        <p>© 2026 <span>Trịnh Gia Bảo</span> · Lấy cảm hứng từ sự cân bằng của tự nhiên 🌿</p>
+    </div>
+</footer>
+
+<script>
+// =========================================
+// PARTICLES
+// =========================================
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = [];
+const count = 55;
+
+for (let i = 0; i < count; i++) {
+    particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 1.5 + 0.3,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        o: Math.random() * 0.5 + 0.1
+    });
+}
+
+function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(91,223,138,${p.o})`;
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 120) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(91,223,138,${0.07 * (1 - dist/120)})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+
+    requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// =========================================
+// HEADER SCROLL
+// =========================================
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// =========================================
+// HAMBURGER
+// =========================================
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+});
+
+navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navMenu.classList.remove('open');
+    });
+});
+
+// =========================================
+// SMOOTH SCROLL
+// =========================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// =========================================
+// REVEAL ANIMATION
+// =========================================
+function reveal() {
+    document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+            el.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', () => setTimeout(reveal, 100));
+reveal();
+</script>
 </body>
 </html>

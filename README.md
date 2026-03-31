@@ -44,7 +44,7 @@ Tôi là **Trịnh Gia Bảo**, hiện là sinh viên chuyên ngành **Công ngh
 ### 📫 Kết nối với tôi
 *   📍 **Vị trí:** Phường Tân Hòa, TP. Hồ Chí Minh
 *   📞 **Điện thoại:** (+84) 868 092 445
-*   📧 **Email:** gbao74452@gmail.com
+*   📧 **Email:** gbao74452@gmail.com | tiktokthu10@gmail.com
 *   🌐 **GitHub:** [github.com/gbao86](https://github.com/gbao86)
 
 ---

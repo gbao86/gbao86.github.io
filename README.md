@@ -35,8 +35,8 @@ Tôi là **Trịnh Gia Bảo**, hiện là sinh viên chuyên ngành **Công ngh
 
 *   **Đại học Tài nguyên và Môi trường TP.HCM:** Chuyên ngành CNTT (2021 - Nay).
 *   **HackerRank Certifications:**
-    *   **SQL (Advanced)**, Problem Solving (Intermediate).
-    *   Python (Basic), Java (Basic).
+    *   [**SQL (Advanced)**](https://www.hackerrank.com/certificates/fc81610f3e8c), [Problem Solving (Intermediate)](https://www.hackerrank.com/certificates/e3cb19c182cc).
+    *   [Python (Basic)](https://www.hackerrank.com/certificates/8cfb9fe0851b), [Java (Basic)](https://www.hackerrank.com/certificates/6b16570db7c7).
 *   **Tiếng Anh:** Technical English Proficiency (TOEIC 545).
 
 ---

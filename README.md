@@ -1,4 +1,4 @@
-# 🚀 Chào mừng đến với Github của Trịnh Gia Bảo (Jisy)
+# 🚀 Chào mừng đến với Github của Trịnh Gia Bảo
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=36BCF7&width=500&lines=Full-Stack+Developer+Intern;Mobile+%26+AI+Integration;Environmental+Informatics+Student)](https://git.io/typing-svg)
 

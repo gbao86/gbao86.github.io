@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trịnh Gia Bảo | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,7 @@
 
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">Trịnh Gia Bảo</a>
+            <a href="#" class="logo">TGB.</a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#about">Về tôi</a></li>
@@ -25,47 +25,153 @@
     </header>
 
     <main>
+        <!-- Phân vùng Hero: Layout 2 cột hiện đại -->
         <section id="hero">
-            <div class="container">
-                <div class="hero-img-reveal">
-                    <img src="image_1.png" alt="Trịnh Gia Bảo" class="profile-pic">
+            <div class="container hero-wrapper">
+                <div class="hero-content reveal">
+                    <span class="badge">Xin chào, tôi là</span>
+                    <h1 class="hero-title">Trịnh Gia Bảo</h1>
+                    <h2 class="hero-subtitle">Full-Stack Developer Intern</h2>
+                    <p class="hero-desc">Tập trung vào Mobile (Flutter) & tích hợp AI (GenAI, On-device AI). Đam mê xây dựng các giải pháp thực tế, mượt mà và tối ưu hiệu suất.</p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">Xem Dự Án</a>
+                        <a href="https://github.com/gbao86" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
                 </div>
-                <h1 class="reveal">Trịnh Gia Bảo</h1>
-                <p class="hero-subtitle reveal">Full-Stack Developer Intern | Mobile & AI Integration</p>
-                <p class="reveal"><i class="fas fa-map-marker-alt"></i> Phường Tân Hóa, TP. Hồ Chí Minh</p>
+                <div class="hero-image reveal">
+                    <div class="image-frame">
+                        <img src="image_1.png" alt="Trịnh Gia Bảo">
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="reveal">
-             <div class="container">
-                <h2 class="section-title">Về tôi</h2>
-                <div class="about-content">
-                    <p>Tôi là sinh viên chuyên ngành CNTT (Tin học Môi trường) tại Đại học Tài nguyên và Môi trường TP.HCM. Tôi tập trung vào việc kết hợp Flutter và AI để tạo ra các giải pháp thực tế.</p>
-                    <p>Ngoài lập trình, tôi có sự quan tâm đặc biệt đến động vật, đặc biệt là mèo, chó và rắn.</p>
+        <!-- Phân vùng Về Tôi -->
+        <section id="about" class="section-bg">
+             <div class="container reveal">
+                <div class="section-header">
+                    <h2>Về Tôi</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>Hiện là sinh viên chuyên ngành <strong>Công nghệ thông tin (Tin học Môi trường)</strong> tại Đại học Tài nguyên và Môi trường TP.HCM. Định hướng của tôi là mang sức mạnh của Trí tuệ nhân tạo nhúng vào các thiết bị di động để giải quyết các bài toán môi trường và đời sống.</p>
+                        <p>Bên ngoài những dòng code, tôi tìm thấy nguồn cảm hứng từ thế giới tự nhiên và có tình yêu đặc biệt với các loài động vật (đặc biệt là chó, mèo và rắn).</p>
+                    </div>
+                    <div class="about-info-card">
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> <strong>Vị trí:</strong> Phường Tân Hòa, TP. HCM</li>
+                            <li><i class="fas fa-envelope"></i> <strong>Email:</strong> gbao74452@gmail.com</li>
+                            <li><i class="fas fa-phone"></i> <strong>Điện thoại:</strong> (+84) 868 092 445</li>
+                        </ul>
+                    </div>
                 </div>
              </div>
         </section>
 
-        <section id="contact" class="reveal">
-            <div class="container">
-                <h2 class="section-title">Thông tin liên hệ</h2>
-                <div class="contact-info">
-                    <p><strong>Địa chỉ:</strong> Phường Tân Hòa, TP. Hồ Chí Minh</p>
-                    <p><strong>Điện thoại:</strong> (+84) 868 092 445</p>
-                    <p><strong>Email:</strong> gbao74452@gmail.com | tiktokthu10@gmail.com</p>
+        <!-- Phân vùng Kỹ Năng -->
+        <section id="skills">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2>Kỹ Năng Chuyên Môn</h2>
+                    <div class="line"></div>
                 </div>
-                <div class="contact-links">
-                    <a href="https://github.com/gbao86" target="_blank"><i class="fab fa-github"></i> GitHub cá nhân</a>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Mobile & Web</h3>
+                        <p>Flutter (Provider, GetX, BLOC), RESTful API, Streamlit, Firebase.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fas fa-brain"></i></div>
+                        <h3>AI & Data</h3>
+                        <p>TensorFlow Lite, Gemini 1.5 Flash API, Scikit-learn, Web Scraping.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fas fa-code"></i></div>
+                        <h3>Ngôn Ngữ</h3>
+                        <p>Dart, Python, Java, SQL, JavaScript.</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="icon-box"><i class="fas fa-tools"></i></div>
+                        <h3>Công Cụ</h3>
+                        <p>Git/GitHub, Docker, Postman, Figma.</p>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Trịnh Gia Bảo. Cảm hứng từ thiên nhiên và các loài động vật.</p>
-        </div>
-    </footer>
+        <!-- Phân vùng Dự án -->
+        <section id="projects" class="section-bg">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2>Dự Án Nổi Bật</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Book Search & Management</h3>
+                            <div class="tags">
+                                <span>Flutter</span> <span>Python</span> <span>Firebase</span>
+                            </div>
+                            <p>Công cụ tìm kiếm Hybrid tích hợp Google Books API và Web Scraper, xử lý bất đồng bộ mạnh mẽ cho trải nghiệm mượt mà.</p>
+                            <a href="https://github.com/gbao86/tim_kiem_sach.git" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>AI Garbage Classification</h3>
+                            <div class="tags">
+                                <span>TensorFlow Lite</span> <span>Gemini API</span> <span>Flutter</span>
+                            </div>
+                            <p>Ứng dụng di động phân loại rác thải thời gian thực (độ trễ < 200ms) kết hợp GenAI hướng dẫn xử lý thân thiện với môi trường.</p>
+                            <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>Music Genre Classifier</h3>
+                            <div class="tags">
+                                <span>Keras/CNN</span> <span>Flask</span> <span>Librosa</span>
+                            </div>
+                            <p>Mô hình Deep Learning 2 giai đoạn phân loại 8 thể loại âm nhạc với độ chính xác 80%, giao tiếp qua RESTful API.</p>
+                            <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <h3>UrbanEcoTool Vietnam</h3>
+                            <div class="tags">
+                                <span>GeoPandas</span> <span>Python</span>
+                            </div>
+                            <p>Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, giảm 50% thời gian lập kế hoạch thủ công.</p>
+                            <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">Xem mã nguồn <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Liên hệ -->
+        <footer id="contact">
+            <div class="container reveal">
+                <h2>Sẵn sàng kiến tạo những dự án mới?</h2>
+                <p>Tôi luôn cởi mở với các cơ hội thực tập và hợp tác phát triển.</p>
+                <a href="mailto:gbao74452@gmail.com" class="btn btn-primary" style="margin-top: 20px;">Gửi Email Cho Tôi</a>
+                <div class="social-links">
+                    <a href="https://github.com/gbao86" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2026 Trịnh Gia Bảo. Lấy cảm hứng từ sự cân bằng của tự nhiên.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>

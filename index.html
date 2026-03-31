@@ -757,7 +757,16 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
         }
+        
+        /* Ẩn thanh cuộn ngang của .social-row */
+        .social-row::-webkit-scrollbar {
+            display: none; 
+        }
 
+        .social-row {
+            -ms-overflow-style: none;  /* Dành cho Internet Explorer và Edge */
+            scrollbar-width: none;  /* Dành cho Firefox */
+        }
         .social-pill {
             display: inline-flex;
             align-items: center;

@@ -1,4 +1,4 @@
-// Hiệu ứng cuộn trang mượt mà (Smooth Scroll)
+// Cuộn mượt
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -8,20 +8,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Hiệu ứng Reveal khi cuộn chuột (Scroll Reveal)
+// Hiệu ứng hiện dần khi cuộn
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
     for (var i = 0; i < reveals.length; i++) {
         var windowHeight = window.innerHeight;
         var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 150;
+        var elementVisible = 100;
         if (elementTop < windowHeight - elementVisible) {
             reveals[i].classList.add("active");
         }
     }
 }
-
 window.addEventListener("scroll", reveal);
-
-// Chạy hiệu ứng ngay khi load trang cho phần Hero
-window.onload = reveal;
+window.onload = function() {
+    setTimeout(reveal, 100); // Đợi web load xong mới chạy hiệu ứng Hero
+};

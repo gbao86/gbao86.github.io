@@ -748,10 +748,14 @@
         .social-row {
             display: flex;
             gap: 12px;
-            justify-content: center;
             margin-top: 48px;
             padding-top: 40px;
+            padding-bottom: 16px;
             border-top: 1px solid var(--card-border);
+            
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
 
         .social-pill {
@@ -766,6 +770,9 @@
             font-weight: 500;
             color: var(--text-muted);
             transition: all 0.25s ease;
+
+            flex-shrink: 0; 
+            white-space: nowrap;
         }
         .social-pill:hover {
             border-color: var(--primary);
@@ -1207,7 +1214,7 @@
             </div>
             <div class="social-row">
                 <a href="https://github.com/gbao86" target="_blank" class="social-pill">
-                    <i class="fab fa-github"></i> github.com/gbao86
+                    <i class="fab fa-github"></i> Github
                 </a>
                 <a href="https://www.facebook.com/BaOU.me" target="_blank" class="social-pill">
                     <i class="fab fa-facebook"></i> Facebook
@@ -1236,7 +1243,7 @@
                     <i class="fas fa-phone"></i> (+84) 868 092 445
                 </a>
                 <a href="https://maps.google.com/?q=Tan+Hoa+Ho+Chi+Minh" target="_blank" class="social-pill">
-                    <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
+                    <i class="fas fa-map-marker-alt"></i> Tan Hoa Ward, HCMC
                 </a>
             </div>
         </div>

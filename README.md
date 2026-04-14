@@ -11,7 +11,7 @@ Tôi là **Trịnh Gia Bảo**, hiện là sinh viên chuyên ngành **Công ngh
 | Lĩnh vực | Công nghệ sử dụng |
 | :--- | :--- |
 | **Mobile & Web** | Flutter (Provider, GetX, BLOC), RESTful API, Streamlit, Firebase |
-| **AI & Data Science** | TensorFlow Lite, Gemini 1.5 Flash API, Scikit-learn, Web Scraping, GeoPandas |
+| **AI & Data Science** | TensorFlow Lite, Gemini API, Scikit-learn, Web Scraping, GeoPandas |
 | **Ngôn ngữ** | Dart, Python (Flask), Java, SQL, JavaScript |
 | **Công cụ** | Git/GitHub (Git Flow), Docker, Postman, Unit Testing |
 

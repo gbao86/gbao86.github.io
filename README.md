@@ -1,3 +1,5 @@
+# 🚀 Chào mừng đến với Github của Trịnh Gia Bảo
+
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=36BCF7&width=500&lines=Full-Stack+Developer+Intern;Mobile+%26+AI+Integration;Environmental+Informatics+Student)](https://git.io/typing-svg)
 
 Tôi là **Trịnh Gia Bảo**, hiện là sinh viên chuyên ngành **Công nghệ thông tin (Tin học Môi trường)** tại **Đại học Tài nguyên và Môi trường TP.HCM (HCMUNRE)**. Với định hướng trở thành Full-Stack Developer, tôi tập trung vào việc kết hợp sức mạnh của Mobile (Flutter) và Trí tuệ nhân tạo (AI).

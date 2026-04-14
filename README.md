@@ -23,12 +23,11 @@ Tôi là **Trịnh Gia Bảo**, hiện là sinh viên chuyên ngành **Công ngh
     *   Phát triển công cụ tìm kiếm Hybrid tích hợp Google Books API và Web Scraper, truy cập hơn 10.000 đầu sách.
     *   Xây dựng giao diện đọc sách chuyên sâu với tính năng chặn quảng cáo thông minh và Auto Dark Mode.
 *   **AI Garbage Classification Application:**
-    *   Ứng dụng phân loại rác thải thời gian thực sử dụng **TensorFlow Lite** (độ trễ < 200ms) và **GenAI (Gemini 1.5 Flash)** để hướng dẫn xử lý rác.
+    *   Ứng dụng phân loại rác thải thời gian thực sử dụng **TensorFlow Lite** (độ trễ < 200ms) và **GenAI (Gemini Flash API)** để hướng dẫn xử lý rác.
 *   **CNN-Based Music Genre Classifier:**
     *   Kiến trúc mô hình CNN 2 giai đoạn đạt độ chính xác 80% trong việc phân loại 8 dòng nhạc khác nhau.
 *   **UrbanEcoTool Vietnam:**
     *   Trưởng nhóm phát triển công cụ tự động hóa đề xuất trồng cây xanh theo tiêu chuẩn TCVN, giúp giảm 50% thời gian lập kế hoạch.
-
 ---
 
 ### 🎓 Học vấn & Chứng chỉ

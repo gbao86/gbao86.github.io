@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trịnh Gia Bảo | Flutter & AI Developer</title>
+    <title>Trịnh Gia Bảo | Full-Stack & AI Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -506,6 +506,69 @@
             font-weight: 500;
         }
 
+        /* Education / Experience cards */
+        .timeline-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            transition: border-color var(--transition), transform var(--transition);
+        }
+        .timeline-card:hover {
+            border-color: rgba(91,223,138,0.3);
+            transform: translateY(-3px);
+        }
+        .timeline-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .timeline-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.02rem;
+            color: var(--text);
+        }
+        .timeline-date {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-dim);
+            padding: 3px 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .timeline-sub {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .timeline-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .timeline-card ul li {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+        .timeline-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 9px;
+            width: 6px; height: 6px;
+            border-radius: 2px;
+            background: var(--primary);
+            opacity: 0.6;
+        }
+
         /* =========================================
            SKILLS
         ========================================= */
@@ -598,14 +661,13 @@
             background: var(--card);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 36px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             gap: 0;
             transition: all var(--transition);
             position: relative;
             overflow: hidden;
-            group: true;
         }
         .project-card::after {
             content: '';
@@ -623,13 +685,52 @@
         }
         .project-card:hover::after { opacity: 1; }
 
+        .project-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
+            background: var(--bg3);
+        }
+        .project-thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .project-card:hover .project-thumb img {
+            transform: scale(1.05);
+        }
+        .project-thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(12,16,14,0.7) 100%);
+        }
+
+        .project-body {
+            padding: 32px 36px 36px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
         /* Featured card */
         .project-card.featured {
             grid-column: 1 / -1;
             display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: start;
-            gap: 40px;
+            grid-template-columns: 460px 1fr;
+            align-items: stretch;
+            gap: 0;
+        }
+        .project-card.featured .project-thumb {
+            aspect-ratio: auto;
+            height: 100%;
+            border-bottom: none;
+            border-right: 1px solid var(--card-border);
+        }
+        .project-card.featured .project-body {
+            padding: 40px;
         }
 
         .project-number {
@@ -689,28 +790,11 @@
         .project-link:hover { gap: 14px; }
         .project-link i { font-size: 0.8rem; }
 
-        .project-side-action {
+        .project-links-row {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
-        .icon-link {
-            width: 52px; height: 52px;
-            background: var(--card);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            transition: all 0.25s ease;
-        }
-        .icon-link:hover {
-            background: var(--primary-dim);
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: scale(1.08);
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         /* =========================================
@@ -832,7 +916,7 @@
             .about-grid { grid-template-columns: 1fr; gap: 50px; }
             .skills-layout { grid-template-columns: 1fr; }
             .project-card.featured { grid-template-columns: 1fr; }
-            .project-side-action { flex-direction: row; align-items: center; }
+            .project-card.featured .project-thumb { aspect-ratio: 16/9; border-right: none; border-bottom: 1px solid var(--card-border); }
         }
 
         @media (max-width: 768px) {
@@ -862,12 +946,14 @@
             .about-grid { gap: 36px; }
             .contact-inner .section-title { font-size: 2.2rem; }
             .hero-name { letter-spacing: -1px; }
+            .project-card.featured .project-body { padding: 28px; }
         }
 
         @media (max-width: 480px) {
             .hero-stats { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
             .skills-layout { grid-template-columns: 1fr; }
             .btn { padding: 11px 22px; font-size: 0.9rem; }
+            .timeline-head { flex-direction: column; align-items: flex-start; }
         }
 
         /* =========================================
@@ -890,6 +976,7 @@
         <nav>
             <ul id="nav-menu">
                 <li><a href="#about">Về tôi</a></li>
+                <li><a href="#experience">Kinh nghiệm</a></li>
                 <li><a href="#skills">Kỹ năng</a></li>
                 <li><a href="#projects">Dự án</a></li>
                 <li><a href="#contact" class="nav-cta">Liên hệ</a></li>
@@ -909,12 +996,13 @@
             <div class="hero-content reveal">
                 <div class="hero-eyebrow">Xin chào, tôi là</div>
                 <h1 class="hero-name">Trịnh<br>Gia Bảo</h1>
-                <h2 class="hero-role">Flutter & AI Developer Intern</h2>
+                <h2 class="hero-role">Full-Stack Developer | Web, Mobile & AI Integration</h2>
                 <p class="hero-desc">
-                    Sinh viên CNTT tại HCMUNRE — tập trung vào phát triển
+                    Sinh viên CNTT (Tin học Môi trường) tại HCMUNRE — tập trung vào
+                    <strong style="color:var(--text)">Full-Stack Web (Next.js/FastAPI)</strong>,
                     <strong style="color:var(--text)">Mobile (Flutter)</strong> &
-                    <strong style="color:var(--text)">On-device AI</strong>.
-                    Đam mê xây dựng giải pháp thực tế, mượt mà và hiệu suất cao để giải quyết các bài toán môi trường.
+                    <strong style="color:var(--text)">AI/Big Data Integration</strong>.
+                    Đam mê xây dựng giải pháp thực tế, mượt mà và hiệu suất cao để giải quyết các bài toán môi trường và đời sống.
                 </p>
                 <div class="hero-ctas">
                     <a href="#projects" class="btn btn-primary">
@@ -926,11 +1014,11 @@
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-num">4+</div>
+                        <div class="stat-num">5+</div>
                         <div class="stat-label">Dự án</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-num">5</div>
+                        <div class="stat-num">7</div>
                         <div class="stat-label">Ngôn ngữ</div>
                     </div>
                     <div class="stat-item">
@@ -947,7 +1035,7 @@
                         <img src="image_1.png" alt="Trịnh Gia Bảo">
                     </div>
                     <div class="float-card card1">
-                        <i class="fas fa-mobile-alt" style="margin-right:6px;"></i> Flutter Dev
+                        <i class="fas fa-code" style="margin-right:6px;"></i> Full-Stack Dev
                     </div>
                     <div class="float-card card2">
                         <i class="fas fa-brain" style="margin-right:6px;"></i> AI Integration
@@ -968,12 +1056,13 @@
                 <div class="about-text" style="margin-top: 28px;">
                     <p>
                         Tôi đang theo học chuyên ngành <em>Công nghệ thông tin (Tin học Môi trường)</em> tại
-                        <strong>Đại học Tài nguyên và Môi trường TP.HCM (HCMUNRE)</strong>.
+                        <strong>Đại học Tài nguyên và Môi trường TP.HCM (HCMUNRE)</strong> từ năm 2021 đến nay.
                     </p>
                     <p>
-                        Định hướng của tôi là mang sức mạnh của <strong>Trí tuệ nhân tạo</strong> — đặc biệt là AI
-                        nhúng trực tiếp trên thiết bị (On-device AI) — vào các ứng dụng di động để giải quyết
-                        các bài toán thực tiễn về môi trường và đời sống hàng ngày.
+                        Định hướng của tôi là xây dựng các hệ thống <strong>Full-Stack</strong> hiện đại kết hợp
+                        <strong>Trí tuệ nhân tạo</strong> — từ on-device AI trên di động, đến các pipeline
+                        Big Data và LLM trên web — nhằm giải quyết các bài toán thực tiễn về môi trường,
+                        quản lý vận hành và đời sống hàng ngày.
                     </p>
                     <p>
                         Bên ngoài code, tôi tìm thấy nguồn cảm hứng từ <strong>thế giới tự nhiên</strong> và
@@ -1018,13 +1107,60 @@
                         <span class="interest-tag">🎵 Âm nhạc</span>
                     </div>
                 </div>
+                <div class="info-card reveal reveal-delay-3">
+                    <div class="info-card-title">Học vấn & Chứng chỉ</div>
+                    <ul class="contact-list" style="gap: 14px;">
+                        <li style="align-items:flex-start;">
+                            <i class="fas fa-graduation-cap" style="margin-top:2px;"></i>
+                            <span><strong style="color:var(--text)">HCMUNRE</strong> — CNTT (Tin học Môi trường), 2021 - Hiện tại</span>
+                        </li>
+                        <li style="align-items:flex-start;">
+                            <i class="fas fa-certificate" style="margin-top:2px;"></i>
+                            <span>HackerRank: Software Engineer & Frontend Developer (React) — 05/2026</span>
+                        </li>
+                        <li style="align-items:flex-start;">
+                            <i class="fas fa-certificate" style="margin-top:2px;"></i>
+                            <span>HackerRank: SQL (Advanced), Problem Solving, REST API, Python, Java — 03/2026</span>
+                        </li>
+                        <li style="align-items:flex-start;">
+                            <i class="fas fa-language" style="margin-top:2px;"></i>
+                            <span>English: TOEIC Format — Score 545 (11/2025)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== EXPERIENCE ========== -->
+<section id="experience">
+    <div class="container">
+        <div style="text-align:center; margin-bottom:56px;" class="reveal">
+            <div class="section-label" style="justify-content:center;">Lịch sử</div>
+            <h2 class="section-title">Kinh nghiệm làm việc</h2>
+            <p class="section-desc" style="margin: 0 auto;">Hành trình thực tập và làm việc thực tế trong lĩnh vực công nghệ.</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:20px; max-width: 820px; margin: 0 auto;">
+            <div class="timeline-card reveal reveal-delay-1">
+                <div class="timeline-head">
+                    <div class="timeline-title">IT Technical Support Intern</div>
+                    <div class="timeline-date">04/2026 - 06/2026</div>
+                </div>
+                <div class="timeline-sub">Truong Thinh Group Technology Development Co., Ltd</div>
+                <ul>
+                    <li>Hỗ trợ kỹ thuật toàn diện, bảo trì phần cứng và xử lý sự cố hệ thống cho hạ tầng khách hàng doanh nghiệp.</li>
+                    <li>Chẩn đoán, sửa chữa và lắp ráp máy tính, thiết bị ngoại vi, thiết bị mạng đảm bảo uptime hệ thống tối ưu.</li>
+                    <li>Xử lý các vấn đề phần mềm, hệ điều hành và kết nối qua quy trình chẩn đoán hiệu quả.</li>
+                    <li>Hỗ trợ thiết lập, cấu hình và triển khai workstation theo yêu cầu khách hàng.</li>
+                </ul>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ========== SKILLS ========== -->
-<section id="skills">
+<section id="skills" class="alt-bg">
     <div class="container">
         <div style="text-align:center; margin-bottom:56px;" class="reveal">
             <div class="section-label" style="justify-content:center;">Chuyên môn</div>
@@ -1033,57 +1169,66 @@
         </div>
         <div class="skills-layout">
             <div class="skill-block reveal reveal-delay-1">
-                <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3>Mobile & Web</h3>
-                <p>Phát triển ứng dụng đa nền tảng hiệu năng cao với Flutter, quản lý state chuyên sâu và tích hợp RESTful API mượt mà.</p>
+                <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Frontend & Mobile</h3>
+                <p>Xây dựng giao diện hiện đại, đa nền tảng với Next.js, React và Flutter, quản lý state chuyên sâu và trực quan hóa dữ liệu real-time.</p>
                 <div class="skill-tags">
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Tailwind CSS v4</span>
                     <span class="skill-tag">Flutter</span>
-                    <span class="skill-tag">Provider</span>
-                    <span class="skill-tag">GetX</span>
-                    <span class="skill-tag">BLOC</span>
-                    <span class="skill-tag">Firebase</span>
-                    <span class="skill-tag">Streamlit</span>
-                    <span class="skill-tag">RESTful API</span>
+                    <span class="skill-tag">Provider/GetX/BLoC</span>
+                    <span class="skill-tag">Recharts/Chart.js</span>
                 </div>
             </div>
             <div class="skill-block reveal reveal-delay-2">
-                <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                <h3>AI & Machine Learning</h3>
-                <p>Triển khai mô hình AI trực tiếp trên thiết bị, tích hợp GenAI API và xây dựng pipeline xử lý dữ liệu thông minh.</p>
+                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <h3>Backend & Cloud</h3>
+                <p>Thiết kế API bất đồng bộ, hệ thống xác thực bảo mật và kiến trúc dữ liệu linh hoạt trên đa nền tảng cloud.</p>
                 <div class="skill-tags">
-                    <span class="skill-tag">TensorFlow Lite</span>
-                    <span class="skill-tag">Gemini API</span>
-                    <span class="skill-tag">Keras/CNN</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">Librosa</span>
-                    <span class="skill-tag">Web Scraping</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">JWT Auth</span>
+                    <span class="skill-tag">SSE</span>
+                    <span class="skill-tag">MongoDB Atlas</span>
+                    <span class="skill-tag">Firebase</span>
+                    <span class="skill-tag">Supabase</span>
+                    <span class="skill-tag">Upstash Redis</span>
                 </div>
             </div>
             <div class="skill-block reveal reveal-delay-3">
-                <div class="skill-icon"><i class="fas fa-code"></i></div>
-                <h3>Ngôn ngữ lập trình</h3>
-                <p>Thành thạo đa ngôn ngữ, từ mobile đến backend, từ scripting đến data science, linh hoạt chọn đúng công cụ cho từng bài toán.</p>
+                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI & Big Data</h3>
+                <p>Triển khai mô hình AI on-device, tích hợp LLM/GenAI API và xây dựng pipeline xử lý dữ liệu lớn theo thời gian thực.</p>
                 <div class="skill-tags">
-                    <span class="skill-tag">Dart</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">HTML5/CSS3</span>
-                    <span class="skill-tag">C/C++</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Apache Spark (PySpark)</span>
+                    <span class="skill-tag">TensorFlow Lite</span>
+                    <span class="skill-tag">Gemini API</span>
+                    <span class="skill-tag">GroqCloud (LLaMA 3.3)</span>
+                    <span class="skill-tag">SparkML</span>
+                    <span class="skill-tag">Scikit-learn</span>
+                    <span class="skill-tag">Web Scraping</span>
                 </div>
             </div>
             <div class="skill-block reveal reveal-delay-4">
                 <div class="skill-icon"><i class="fas fa-tools"></i></div>
-                <h3>Công cụ & DevOps</h3>
+                <h3>Ngôn ngữ & Công cụ</h3>
                 <p>Quy trình phát triển chuyên nghiệp với version control, containerization, API testing và thiết kế giao diện chuẩn mực.</p>
                 <div class="skill-tags">
-                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">Dart</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">HTML5/CSS3</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">Git/GitHub</span>
                     <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Postman</span>
                     <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">GeoPandas</span>
-                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">Vercel/Render</span>
                 </div>
             </div>
         </div>
@@ -1091,7 +1236,7 @@
 </section>
 
 <!-- ========== PROJECTS ========== -->
-<section id="projects" class="alt-bg">
+<section id="projects">
     <div class="container">
         <div class="projects-header reveal">
             <div>
@@ -1105,101 +1250,179 @@
 
         <div class="projects-grid">
 
-            <!-- Featured: AI Garbage -->
+            <!-- Featured: CHIMS -->
             <div class="project-card featured reveal">
-                <div>
+                <div class="project-thumb">
+                    <img src="project_chims.png" alt="CHIMS - Computer Hardware Inventory & Management System">
+                </div>
+                <div class="project-body">
                     <div class="project-number">Dự án 01 · Nổi bật</div>
-                    <h3 class="project-title">EcoSort by Bao - Ứng dụng phân loại rác tích hợp map địa điểm tái chế</h3>
+                    <h3 class="project-title">CHIMS - Computer Hardware Inventory & Management System</h3>
                     <div class="project-tags">
-                        <span class="project-tag">TensorFlow Lite</span>
-                        <span class="project-tag">Gemini API</span>
-                        <span class="project-tag">Flutter</span>
-                        <span class="project-tag">On-device AI</span>
+                        <span class="project-tag">Next.js 15</span>
+                        <span class="project-tag">FastAPI</span>
+                        <span class="project-tag">MongoDB Atlas</span>
+                        <span class="project-tag">LLaMA 3.3 (Groq)</span>
                     </div>
                     <p class="project-desc">
-                        Ứng dụng di động phân loại rác thải <strong style="color:var(--text)">thời gian thực với độ trễ dưới 200ms</strong>,
-                        sử dụng TensorFlow Lite chạy hoàn toàn trên thiết bị. Kết hợp Gemini GenAI hướng dẫn xử lý
-                        từng loại rác một cách thân thiện với môi trường và dễ hiểu cho người dùng.
+                        Hệ thống ERP quản lý kho phần cứng doanh nghiệp với <strong style="color:var(--text)">analytics thời gian thực</strong>,
+                        kiểm tra tương thích linh kiện tĩnh, và đánh giá cấu hình PC bằng AI. Xây dựng từ đầu với Next.js App Router
+                        và FastAPI bất đồng bộ, theo dõi serial-unit (in-stock, sold, RMA, scrap) cho 17+ module, tích hợp
+                        dashboard Recharts, JWT role-based auth và xuất báo cáo PDF/Excel tự động.
+                    </p>
+                    <div class="project-links-row">
+                        <a href="https://github.com/gbao86/chims.git" target="_blank" class="project-link">
+                            Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://chims-ten.vercel.app/" target="_blank" class="project-link">
+                            Live Demo <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Fraud Radar -->
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-thumb">
+                    <img src="project_fraud_radar.png" alt="AI Fraud Radar dashboard">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 02</div>
+                    <h3 class="project-title">AI Fraud Radar</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Apache Spark</span>
+                        <span class="project-tag">SparkML</span>
+                        <span class="project-tag">Next.js 16</span>
+                        <span class="project-tag">Upstash Redis</span>
+                    </div>
+                    <p class="project-desc">
+                        Pipeline phát hiện gian lận tài chính theo thời gian thực end-to-end: huấn luyện GBT classifier trên
+                        6.3M+ bản ghi PaySim đạt <strong style="color:var(--text)">99.40% Accuracy, AUC 0.9959</strong>,
+                        streaming micro-batch với PySpark Structured Streaming, cache cảnh báo qua Upstash Redis và
+                        dashboard React 19 real-time qua SSE & Chart.js.
+                    </p>
+                    <a href="https://github.com/gbao86/ai-fraud-radar.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- EcoSort -->
+            <div class="project-card reveal reveal-delay-2">
+                <div class="project-thumb">
+                    <img src="project_ecosort.png" alt="EcoSort by Bao - waste classification app">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 03</div>
+                    <h3 class="project-title">EcoSort by Bao</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Flutter</span>
+                        <span class="project-tag">TensorFlow Lite</span>
+                        <span class="project-tag">Gemini API</span>
+                        <span class="project-tag">Supabase</span>
+                    </div>
+                    <p class="project-desc">
+                        Ứng dụng phân loại rác đa nền tảng với <strong style="color:var(--text)">dual-AI fallback</strong>:
+                        TFLite on-device cho nhận diện offline và Gemini API cho phân tích online. Tích hợp Google ML Kit
+                        bounding-box detection, bản đồ điểm tái chế qua OpenStreetMap, và hệ thống gamification
+                        (XP, quiz, badge) để nâng cao nhận thức môi trường.
                     </p>
                     <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="project-link">
                         Xem mã nguồn <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
-                <div class="project-side-action">
-                    <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="icon-link" title="GitHub">
-                        <i class="fab fa-github"></i>
+            </div>
+
+            <!-- Music Genre -->
+            <div class="project-card reveal reveal-delay-3">
+                <div class="project-thumb">
+                    <img src="project_music_genre.png" alt="CNN Music Genre Classifier spectrogram">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 04</div>
+                    <h3 class="project-title">CNN Music Genre Classifier</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Keras/CNN</span>
+                        <span class="project-tag">Flask</span>
+                        <span class="project-tag">Librosa</span>
+                    </div>
+                    <p class="project-desc">
+                        Mô hình CNN 2 giai đoạn (Warm-up + Fine-tuning) phân loại <strong style="color:var(--text)">8 thể loại âm nhạc, đạt 79% accuracy, ROC AUC 0.97</strong>.
+                        Trích xuất 60-feature acoustic profile với Librosa, chuẩn hóa dữ liệu bằng MinMaxScaler, triển khai RESTful API qua Flask
+                        kèm trực quan hóa Mel-Spectrogram và Confusion Matrix theo thời gian thực.
+                    </p>
+                    <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- UrbanEcoTool -->
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-thumb">
+                    <img src="project_urbaneco.png" alt="UrbanEcoTool Vietnam GIS map">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 05</div>
+                    <h3 class="project-title">UrbanEcoTool Vietnam</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">GeoPandas</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">GIS</span>
+                        <span class="project-tag">TCVN Standards</span>
+                    </div>
+                    <p class="project-desc">
+                        Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, phân tích dữ liệu không gian địa lý và
+                        <strong style="color:var(--text)">giảm 50% thời gian lập kế hoạch thủ công</strong> so với phương pháp truyền thống.
+                    </p>
+                    <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DSS - AHP -->
+            <div class="project-card reveal reveal-delay-2">
+                <div class="project-thumb">
+                    <img src="project_ahp.png" alt="AHP decision support system">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 06</div>
+                    <h3 class="project-title">Hệ Hỗ Trợ Ra Quyết Định - Phân Tích AHP</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Python/Flask</span>
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">NumPy/Pandas</span>
+                    </div>
+                    <p class="project-desc">
+                        Ứng dụng web hỗ trợ lựa chọn phương tiện di chuyển tại TP.HCM sử dụng <strong style="color:var(--text)">phương pháp AHP</strong>. Tích hợp tự động tính toán trọng số, kiểm tra tính nhất quán và xuất báo cáo trực quan.
+                    </p>
+                    <a href="https://github.com/gbao86/ahp_HHTRQ-CPTDCTNTTPHCM" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
 
             <!-- Book Search -->
-            <div class="project-card reveal reveal-delay-1">
-                <div class="project-number">Dự án 02</div>
-                <h3 class="project-title">Book Search & Management</h3>
-                <div class="project-tags">
-                    <span class="project-tag">Flutter</span>
-                    <span class="project-tag">Python</span>
-                    <span class="project-tag">Firebase</span>
+            <div class="project-card reveal reveal-delay-3">
+                <div class="project-thumb">
+                    <img src="project_booksearch.png" alt="Book Search & Management app">
                 </div>
-                <p class="project-desc">
-                    Công cụ tìm kiếm Hybrid tích hợp Google Books API và Web Scraper tùy chỉnh, xử lý bất đồng bộ mạnh mẽ đem đến trải nghiệm tìm kiếm mượt mà.
-                </p>
-                <a href="https://github.com/gbao86/tim_kiem_sach.git" target="_blank" class="project-link">
-                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- Music Genre -->
-            <div class="project-card reveal reveal-delay-2">
-                <div class="project-number">Dự án 03</div>
-                <h3 class="project-title">Music Genre Classifier</h3>
-                <div class="project-tags">
-                    <span class="project-tag">Keras/CNN</span>
-                    <span class="project-tag">Flask</span>
-                    <span class="project-tag">Librosa</span>
+                <div class="project-body">
+                    <div class="project-number">Dự án 07</div>
+                    <h3 class="project-title">Book Search & Management</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Flutter</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Firebase</span>
+                    </div>
+                    <p class="project-desc">
+                        Công cụ tìm kiếm Hybrid tích hợp Google Books API và Web Scraper tùy chỉnh, xử lý bất đồng bộ mạnh mẽ đem đến trải nghiệm tìm kiếm mượt mà.
+                    </p>
+                    <a href="https://github.com/gbao86/tim_kiem_sach.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
-                <p class="project-desc">
-                    Mô hình Deep Learning 2 giai đoạn phân loại <strong style="color:var(--text)">8 thể loại âm nhạc với độ chính xác 80%</strong>, triển khai qua RESTful API với Flask.
-                </p>
-                <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">
-                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- UrbanEcoTool -->
-            <div class="project-card reveal reveal-delay-3" style="grid-column: 1 / -1;">
-                <div class="project-number">Dự án 04</div>
-                <h3 class="project-title" style="font-size: 1.6rem;">UrbanEcoTool Vietnam</h3>
-                <div class="project-tags">
-                    <span class="project-tag">GeoPandas</span>
-                    <span class="project-tag">Python</span>
-                    <span class="project-tag">GIS</span>
-                    <span class="project-tag">TCVN Standards</span>
-                </div>
-                <p class="project-desc" style="max-width: 600px;">
-                    Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, phân tích dữ liệu không gian địa lý và
-                    <strong style="color:var(--text)">giảm 50% thời gian lập kế hoạch thủ công</strong> so với phương pháp truyền thống.
-                </p>
-                <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">
-                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- DSS - ahp_HHTRQ-CPTDCTNTTPHCM -->
-            <div class="project-card reveal reveal-delay-2">
-                <div class="project-number">Dự án 05</div>
-                <h3 class="project-title">Hệ Hỗ Trợ Ra Quyết Định - Phân Tích AHP</h3>
-                <div class="project-tags">
-                    <span class="project-tag">Python/Flask</span>
-                    <span class="project-tag">MySQL</span>
-                    <span class="project-tag">NumPy/Pandas</span>
-                </div>
-                <p class="project-desc">
-                    Ứng dụng web hỗ trợ lựa chọn phương tiện di chuyển tại TP.HCM sử dụng <strong style="color:var(--text)">phương pháp AHP</strong>. Tích hợp tự động tính toán trọng số, kiểm tra tính nhất quán và xuất báo cáo trực quan.
-                </p>
-                <a href="https://github.com/gbao86/ahp_HHTRQ-CPTDCTNTTPHCM" target="_blank" class="project-link">
-                    Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                </a>
             </div>
 
         </div>
@@ -1207,7 +1430,7 @@
 </section>
 
 <!-- ========== CONTACT ========== -->
-<section id="contact">
+<section id="contact" class="alt-bg">
     <div class="container">
         <div class="contact-inner reveal">
             <div class="section-label">Liên hệ</div>

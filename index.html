@@ -969,7 +969,6 @@
 
 <canvas id="particles-canvas"></canvas>
 
-<!-- ========== HEADER ========== -->
 <header id="header">
     <div class="container nav-wrap">
         <a href="#" class="logo">TGB<span>.</span></a>
@@ -988,11 +987,9 @@
     </div>
 </header>
 
-<!-- ========== HERO ========== -->
 <section id="hero">
     <div class="container">
         <div class="hero-layout">
-            <!-- Text side -->
             <div class="hero-content reveal">
                 <div class="hero-eyebrow">Xin chào, tôi là</div>
                 <h1 class="hero-name">Trịnh<br>Gia Bảo</h1>
@@ -1027,7 +1024,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Image side -->
             <div class="hero-visual reveal reveal-delay-2">
                 <div class="image-blob-wrap">
                     <div class="blob-bg"></div>
@@ -1046,7 +1042,6 @@
     </div>
 </section>
 
-<!-- ========== ABOUT ========== -->
 <section id="about" class="alt-bg">
     <div class="container">
         <div class="about-grid">
@@ -1133,7 +1128,6 @@
     </div>
 </section>
 
-<!-- ========== EXPERIENCE ========== -->
 <section id="experience">
     <div class="container">
         <div style="text-align:center; margin-bottom:56px;" class="reveal">
@@ -1159,7 +1153,6 @@
     </div>
 </section>
 
-<!-- ========== SKILLS ========== -->
 <section id="skills" class="alt-bg">
     <div class="container">
         <div style="text-align:center; margin-bottom:56px;" class="reveal">
@@ -1235,7 +1228,6 @@
     </div>
 </section>
 
-<!-- ========== PROJECTS ========== -->
 <section id="projects">
     <div class="container">
         <div class="projects-header reveal">
@@ -1249,13 +1241,39 @@
         </div>
 
         <div class="projects-grid">
-            <!-- EcoSort -->
+
+            <div style="grid-column: 1 / -1; margin-top: 20px; margin-bottom: 10px;" class="reveal">
+                <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--primary); border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">📱 App Android & Mobile</h3>
+            </div>
+
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-thumb">
+                    <img src="project_sublazy.png" alt="Sub Lazy Subscription Tracker App">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 01</div>
+                    <h3 class="project-title">Sub Lazy - Subscription Tracker</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Kotlin</span>
+                        <span class="project-tag">Jetpack Compose</span>
+                        <span class="project-tag">Room DB</span>
+                        <span class="project-tag">ML Kit OCR</span>
+                    </div>
+                    <p class="project-desc">
+                        Ứng dụng Android giúp theo dõi và quản lý gói đăng ký (subscriptions). Tích hợp <strong style="color:var(--text)">quét hóa đơn OCR bằng Google ML Kit</strong> offline, tự động lấy thông tin hóa đơn, dự báo dòng tiền bằng biểu đồ Canvas và hệ thống nhắc nhở qua Android WorkManager.
+                    </p>
+                    <a href="https://github.com/gbao86/sub_lazy" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
             <div class="project-card reveal reveal-delay-2">
                 <div class="project-thumb">
                     <img src="project_ecosort.png" alt="EcoSort by Bao - waste classification app">
                 </div>
                 <div class="project-body">
-                    <div class="project-number">Dự án 01 · Nổi bật</div>
+                    <div class="project-number">Dự án 02</div>
                     <h3 class="project-title">EcoSort by Bao</h3>
                     <div class="project-tags">
                         <span class="project-tag">Flutter</span>
@@ -1264,10 +1282,7 @@
                         <span class="project-tag">Supabase</span>
                     </div>
                     <p class="project-desc">
-                        Ứng dụng phân loại rác đa nền tảng với <strong style="color:var(--text)">dual-AI fallback</strong>:
-                        TFLite on-device cho nhận diện offline và Gemini API cho phân tích online. Tích hợp Google ML Kit
-                        bounding-box detection, bản đồ điểm tái chế qua OpenStreetMap, và hệ thống gamification
-                        (XP, quiz, badge) để nâng cao nhận thức môi trường.
+                        Ứng dụng phân loại rác đa nền tảng với <strong style="color:var(--text)">dual-AI fallback</strong>: TFLite on-device cho nhận diện offline và Gemini API cho phân tích online. Tích hợp bản đồ điểm tái chế qua OpenStreetMap và hệ thống gamification (XP, quiz) nâng cao nhận thức môi trường.
                     </p>
                     <a href="https://github.com/gbao86/AI_Garbage_Classification_Application" target="_blank" class="project-link">
                         Xem mã nguồn <i class="fas fa-arrow-right"></i>
@@ -1275,140 +1290,12 @@
                 </div>
             </div>
 
-            <!-- Featured: CHIMS -->
-            <div class="project-card featured reveal">
-                <div class="project-thumb">
-                    <img src="project_chims.png" alt="CHIMS - Computer Hardware Inventory & Management System">
-                </div>
-                <div class="project-body">
-                    <div class="project-number">Dự án 02</div>
-                    <h3 class="project-title">CHIMS - Computer Hardware Inventory & Management System</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Next.js 15</span>
-                        <span class="project-tag">FastAPI</span>
-                        <span class="project-tag">MongoDB Atlas</span>
-                        <span class="project-tag">LLaMA 3.3 (Groq)</span>
-                    </div>
-                    <p class="project-desc">
-                        Hệ thống ERP quản lý kho phần cứng doanh nghiệp với <strong style="color:var(--text)">analytics thời gian thực</strong>,
-                        kiểm tra tương thích linh kiện tĩnh, và đánh giá cấu hình PC bằng AI. Xây dựng từ đầu với Next.js App Router
-                        và FastAPI bất đồng bộ, theo dõi serial-unit (in-stock, sold, RMA, scrap) cho 17+ module, tích hợp
-                        dashboard Recharts, JWT role-based auth và xuất báo cáo PDF/Excel tự động.
-                    </p>
-                    <div class="project-links-row">
-                        <a href="https://github.com/gbao86/chims.git" target="_blank" class="project-link">
-                            Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="https://chims-ten.vercel.app/" target="_blank" class="project-link">
-                            Live Demo <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Fraud Radar -->
-            <div class="project-card reveal reveal-delay-1">
-                <div class="project-thumb">
-                    <img src="project_fraud_radar.png" alt="AI Fraud Radar dashboard">
-                </div>
-                <div class="project-body">
-                    <div class="project-number">Dự án 03</div>
-                    <h3 class="project-title">AI Fraud Radar</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Apache Spark</span>
-                        <span class="project-tag">SparkML</span>
-                        <span class="project-tag">Next.js 16</span>
-                        <span class="project-tag">Upstash Redis</span>
-                    </div>
-                    <p class="project-desc">
-                        Pipeline phát hiện gian lận tài chính theo thời gian thực end-to-end: huấn luyện GBT classifier trên
-                        6.3M+ bản ghi PaySim đạt <strong style="color:var(--text)">99.40% Accuracy, AUC 0.9959</strong>,
-                        streaming micro-batch với PySpark Structured Streaming, cache cảnh báo qua Upstash Redis và
-                        dashboard React 19 real-time qua SSE & Chart.js.
-                    </p>
-                    <a href="https://github.com/gbao86/ai-fraud-radar.git" target="_blank" class="project-link">
-                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Music Genre -->
-            <div class="project-card reveal reveal-delay-3">
-                <div class="project-thumb">
-                    <img src="project_music_genre.png" alt="CNN Music Genre Classifier spectrogram">
-                </div>
-                <div class="project-body">
-                    <div class="project-number">Dự án 04</div>
-                    <h3 class="project-title">CNN Music Genre Classifier</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Keras/CNN</span>
-                        <span class="project-tag">Flask</span>
-                        <span class="project-tag">Librosa</span>
-                    </div>
-                    <p class="project-desc">
-                        Mô hình CNN 2 giai đoạn (Warm-up + Fine-tuning) phân loại <strong style="color:var(--text)">8 thể loại âm nhạc, đạt 79% accuracy, ROC AUC 0.97</strong>.
-                        Trích xuất 60-feature acoustic profile với Librosa, chuẩn hóa dữ liệu bằng MinMaxScaler, triển khai RESTful API qua Flask
-                        kèm trực quan hóa Mel-Spectrogram và Confusion Matrix theo thời gian thực.
-                    </p>
-                    <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">
-                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- UrbanEcoTool -->
-            <div class="project-card reveal reveal-delay-1">
-                <div class="project-thumb">
-                    <img src="project_urbaneco.png" alt="UrbanEcoTool Vietnam GIS map">
-                </div>
-                <div class="project-body">
-                    <div class="project-number">Dự án 05</div>
-                    <h3 class="project-title">UrbanEcoTool Vietnam</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">GeoPandas</span>
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">GIS</span>
-                        <span class="project-tag">TCVN Standards</span>
-                    </div>
-                    <p class="project-desc">
-                        Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, phân tích dữ liệu không gian địa lý và
-                        <strong style="color:var(--text)">giảm 50% thời gian lập kế hoạch thủ công</strong> so với phương pháp truyền thống.
-                    </p>
-                    <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">
-                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- DSS - AHP -->
-            <div class="project-card reveal reveal-delay-2">
-                <div class="project-thumb">
-                    <img src="project_ahp.png" alt="AHP decision support system">
-                </div>
-                <div class="project-body">
-                    <div class="project-number">Dự án 06</div>
-                    <h3 class="project-title">Hệ Hỗ Trợ Ra Quyết Định - Phân Tích AHP</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Python/Flask</span>
-                        <span class="project-tag">MySQL</span>
-                        <span class="project-tag">NumPy/Pandas</span>
-                    </div>
-                    <p class="project-desc">
-                        Ứng dụng web hỗ trợ lựa chọn phương tiện di chuyển tại TP.HCM sử dụng <strong style="color:var(--text)">phương pháp AHP</strong>. Tích hợp tự động tính toán trọng số, kiểm tra tính nhất quán và xuất báo cáo trực quan.
-                    </p>
-                    <a href="https://github.com/gbao86/ahp_HHTRQ-CPTDCTNTTPHCM" target="_blank" class="project-link">
-                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Book Search -->
             <div class="project-card reveal reveal-delay-3">
                 <div class="project-thumb">
                     <img src="project_booksearch.png" alt="Book Search & Management app">
                 </div>
                 <div class="project-body">
-                    <div class="project-number">Dự án 07</div>
+                    <div class="project-number">Dự án 03</div>
                     <h3 class="project-title">Book Search & Management</h3>
                     <div class="project-tags">
                         <span class="project-tag">Flutter</span>
@@ -1424,11 +1311,154 @@
                 </div>
             </div>
 
+            <div style="grid-column: 1 / -1; margin-top: 40px; margin-bottom: 10px;" class="reveal">
+                <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--primary); border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">🌐 Web & Extension</h3>
+            </div>
+
+            <div class="project-card featured reveal">
+                <div class="project-thumb">
+                    <img src="project_chims.png" alt="CHIMS - Computer Hardware Inventory & Management System">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 04 · Nổi bật</div>
+                    <h3 class="project-title">CHIMS - Computer Hardware Inventory System</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Next.js 15</span>
+                        <span class="project-tag">FastAPI</span>
+                        <span class="project-tag">MongoDB Atlas</span>
+                        <span class="project-tag">LLaMA 3.3 (Groq)</span>
+                    </div>
+                    <p class="project-desc">
+                        Hệ thống ERP quản lý kho phần cứng doanh nghiệp với <strong style="color:var(--text)">analytics thời gian thực</strong>,
+                        kiểm tra tương thích linh kiện tĩnh, và đánh giá cấu hình PC bằng AI. Theo dõi serial-unit cho 17+ module, tích hợp dashboard Recharts, JWT role-based auth và xuất báo cáo PDF/Excel tự động.
+                    </p>
+                    <div class="project-links-row">
+                        <a href="https://github.com/gbao86/chims.git" target="_blank" class="project-link">
+                            Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="https://chims-ten.vercel.app/" target="_blank" class="project-link">
+                            Live Demo <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-thumb">
+                    <img src="project_memdom.png" alt="MemDOM Master OS Chrome Extension">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 05</div>
+                    <h3 class="project-title">MemDOM Master OS</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">React 19</span>
+                        <span class="project-tag">TypeScript</span>
+                        <span class="project-tag">Chrome Extension V3</span>
+                        <span class="project-tag">Vite</span>
+                    </div>
+                    <p class="project-desc">
+                        Chrome Extension giúp theo dõi và tối ưu hóa bộ nhớ trình duyệt qua telemetry dashboard. Hỗ trợ <strong style="color:var(--text)">nén HTML DOM (Gzip)</strong>, dọn rác heap V8 chủ động, và tự động hóa chu kỳ ngủ đông các tab ngốn RAM bằng Chrome Alarms API ở chế độ ngầm.
+                    </p>
+                    <a href="https://github.com/gbao86/mem-dom-master" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal reveal-delay-2">
+                <div class="project-thumb">
+                    <img src="project_fraud_radar.png" alt="AI Fraud Radar dashboard">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 06</div>
+                    <h3 class="project-title">AI Fraud Radar</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Apache Spark</span>
+                        <span class="project-tag">SparkML</span>
+                        <span class="project-tag">Next.js 16</span>
+                        <span class="project-tag">Upstash Redis</span>
+                    </div>
+                    <p class="project-desc">
+                        Pipeline phát hiện gian lận tài chính theo thời gian thực: huấn luyện GBT classifier trên 6.3M+ bản ghi PaySim đạt <strong style="color:var(--text)">99.40% Accuracy, AUC 0.9959</strong>, streaming micro-batch với PySpark Structured Streaming, cache cảnh báo qua Upstash Redis và dashboard React real-time qua SSE.
+                    </p>
+                    <a href="https://github.com/gbao86/ai-fraud-radar.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal reveal-delay-3">
+                <div class="project-thumb">
+                    <img src="project_urbaneco.png" alt="UrbanEcoTool Vietnam GIS map">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 07</div>
+                    <h3 class="project-title">UrbanEcoTool Vietnam</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">GeoPandas</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">GIS</span>
+                        <span class="project-tag">TCVN Standards</span>
+                    </div>
+                    <p class="project-desc">
+                        Hệ thống tự động hóa đề xuất trồng cây xanh đô thị theo chuẩn TCVN, phân tích dữ liệu không gian địa lý và <strong style="color:var(--text)">giảm 50% thời gian lập kế hoạch thủ công</strong> so với phương pháp truyền thống.
+                    </p>
+                    <a href="https://github.com/gbao86/UrbanEcoTool_VietNam.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card reveal reveal-delay-1">
+                <div class="project-thumb">
+                    <img src="project_ahp.png" alt="AHP decision support system">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 08</div>
+                    <h3 class="project-title">Hệ Hỗ Trợ Ra Quyết Định - AHP</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Python/Flask</span>
+                        <span class="project-tag">MySQL</span>
+                        <span class="project-tag">NumPy/Pandas</span>
+                    </div>
+                    <p class="project-desc">
+                        Ứng dụng web hỗ trợ lựa chọn phương tiện di chuyển tại TP.HCM sử dụng <strong style="color:var(--text)">phương pháp AHP</strong>. Tích hợp tự động tính toán trọng số, kiểm tra tính nhất quán và xuất báo cáo trực quan.
+                    </p>
+                    <a href="https://github.com/gbao86/ahp_HHTRQ-CPTDCTNTTPHCM" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div style="grid-column: 1 / -1; margin-top: 40px; margin-bottom: 10px;" class="reveal">
+                <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--primary); border-bottom: 1px solid var(--card-border); padding-bottom: 12px;">🧠 Train AI (CNN)</h3>
+            </div>
+
+            <div class="project-card reveal reveal-delay-2">
+                <div class="project-thumb">
+                    <img src="project_music_genre.png" alt="CNN Music Genre Classifier spectrogram">
+                </div>
+                <div class="project-body">
+                    <div class="project-number">Dự án 09</div>
+                    <h3 class="project-title">CNN Music Genre Classifier</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Keras/CNN</span>
+                        <span class="project-tag">Flask</span>
+                        <span class="project-tag">Librosa</span>
+                    </div>
+                    <p class="project-desc">
+                        Mô hình CNN 2 giai đoạn (Warm-up + Fine-tuning) phân loại <strong style="color:var(--text)">8 thể loại âm nhạc, đạt 79% accuracy, ROC AUC 0.97</strong>. Trích xuất 60-feature acoustic profile với Librosa, chuẩn hóa bằng MinMaxScaler, API qua Flask kèm trực quan hóa Mel-Spectrogram và Confusion Matrix real-time.
+                    </p>
+                    <a href="https://github.com/gbao86/cnn-music-genre-classifier.git" target="_blank" class="project-link">
+                        Xem mã nguồn <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
-<!-- ========== CONTACT ========== -->
 <section id="contact" class="alt-bg">
     <div class="container">
         <div class="contact-inner reveal">
@@ -1452,23 +1482,18 @@
                 <a href="https://www.facebook.com/BaOU.me" target="_blank" class="social-pill">
                     <i class="fab fa-facebook"></i> Facebook
                 </a>
-                <!-- Instagram -->
                 <a href="https://www.instagram.com/tgb_102" target="_blank" class="social-pill">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
-                <!-- TikTok -->
                 <a href="https://www.tiktok.com/@banhtetchammuoi?_r=1&_t=ZS-959MlkGF2xu" target="_blank" class="social-pill">
                     <i class="fab fa-tiktok"></i> TikTok
                 </a>
-                <!-- Threads -->
                 <a href="https://www.threads.net/@tgb_102" target="_blank" class="social-pill">
                     <i class="fab fa-threads"></i> Threads
                 </a>
-                <!-- Telegram -->
                 <a href="https://t.me/jisy102" target="_blank" class="social-pill">
                     <i class="fab fa-telegram"></i> Telegram
                 </a>
-                <!-- Youtube -->
                 <a href="https://www.youtube.com/@gbao86" target="_blank" class="social-pill">
                     <i class="fab fa-youtube"></i> Youtube
                 </a>
@@ -1483,7 +1508,6 @@
     </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
 <footer>
     <div class="container">
         <p>© 2026 <span>Trịnh Gia Bảo</span> · Lấy cảm hứng từ sự cân bằng của tự nhiên 🌿</p>

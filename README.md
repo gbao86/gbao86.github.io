@@ -1,4 +1,4 @@
-# Trịnh Gia Bảo (Jisy) - Personal Portfolio 🚀
+# Trịnh Gia Bảo (gbao86) - Personal Portfolio 🚀
 
 Trang web cá nhân trưng bày các dự án nổi bật, kỹ năng và kinh nghiệm của tôi trong lĩnh vực Full-Stack Web, Mobile (Android/Flutter) và tích hợp AI.
 

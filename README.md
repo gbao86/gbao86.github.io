@@ -15,9 +15,5 @@ Dự án được xây dựng hoàn toàn thuần tủy (Vanilla), không phụ 
 * **Tối ưu UX/UI:** Hiệu ứng cuộn mượt mà (smooth scrolling) và lazy-reveal.
 * **Phân loại rõ ràng:** Portfolio chia mảng cụ thể (App Mobile, Web/Extension, Train AI).
 
-## 💻 Chạy thử (Local)
-Vì đây là file tĩnh, bạn không cần cài đặt môi trường hay chạy lệnh build. Chỉ cần clone về và chạy trực tiếp:
-
-```bash
-git clone [https://github.com/gbao86/gbao86.github.io.git](https://github.com/gbao86/gbao86.github.io.git)
-cd gbao86.github.io
+---
+*© 2026 Trịnh Gia Bảo. Lấy cảm hứng từ sự cân bằng của tự nhiên 🌿*
